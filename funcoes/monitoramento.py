@@ -6,12 +6,29 @@ from funcoes.camera_manager import CameraManager
 from funcoes.camera_selector import CameraSelector
 from funcoes.motion_detector import MotionDetector
 from funcoes.video_recorder import VideoRecorder
+import sys
+from pathlib import Path
+
+
+def caminho_recurso(nome):
+    if getattr(sys, "frozen", False):
+        base = Path(sys._MEIPASS)
+    else:
+        base = Path(__file__).resolve().parent.parent
+
+    return base / "icones" / nome
+
 
 class Monitoramento(ctk.CTk):
 
     def __init__(self):
 
         super().__init__()
+        
+        self.configure(fg_color="#000000")
+        
+        caminho_icone = caminho_recurso("ec.ico")
+        self.iconbitmap(str(caminho_icone))
 
         self.camera_manager = CameraManager()
 
@@ -26,14 +43,10 @@ class Monitoramento(ctk.CTk):
         self.camera_indisponivel = False
         self.procurando_camera = False
         
+        caminho_icone_camera = caminho_recurso( "camera.png" )
+
         self.icone_camera = Image.open(
-                "icones/camera.png"
-            )
-        
-        caminho_icone = (
-            Path(__file__).resolve().parent.parent
-            / "icones"
-            / "camera.png"
+            caminho_icone_camera
         )
 
         self.icone_camera = Image.open(
@@ -114,24 +127,11 @@ class Monitoramento(ctk.CTk):
     
     def criar_interface(self):
 
-        self.container_video = ctk.CTkFrame(
-            self,
-            corner_radius=0,
-            fg_color="transparent"
-        )
-
-        self.container_video.pack(
-            fill="both",
-            expand=True,
-            padx=20,
-            pady=20
-        )
-
         self.video_canvas = ctk.CTkCanvas(
-            self.container_video,
+            self,
+            bg="#000000",
             highlightthickness=0,
-            borderwidth=0,
-            bg="#000000"
+            borderwidth=0
         )
 
         self.video_canvas.pack(
@@ -547,7 +547,7 @@ class Monitoramento(ctk.CTk):
             y1,
             x2,
             y2,
-            fill="#023F6E",
+            fill="#680202",
             outline="",
             tags="camera_button"
         )

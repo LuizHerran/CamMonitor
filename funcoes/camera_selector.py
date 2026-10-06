@@ -25,13 +25,13 @@ class CameraSelector:
     def criar_janela(self):
 
         self.janela = ctk.CTkFrame(
-            self.parent.container_video,
+            self.parent,
             width=380,
             height=400,
-            corner_radius=18,
-            fg_color="#181818",
-            border_width=1,
-            border_color="#444444"
+            corner_radius=0,
+            fg_color="#050505",
+            border_width=3,
+            border_color="#750000"
         )
 
         self.janela.place(
@@ -59,7 +59,7 @@ class CameraSelector:
             self.janela,
             text="Procurando câmeras...",
             font=("Arial", 12),
-            text_color="#AAAAAA"
+            text_color="#BDBDBD"
         )
 
         self.contador.pack(
@@ -84,10 +84,10 @@ class CameraSelector:
             text="Cancelar",
             height=38,
             corner_radius=10,
-            fg_color="#252525",
-            hover_color="#333333",
+            fg_color="#880000",
+            hover_color="#C90202",
             border_width=1,
-            border_color="#555555",
+            border_color="#FDFDFD",
             text_color="#DDDDDD",
             font=("Arial", 12),
             command=self.fechar
@@ -141,7 +141,7 @@ class CameraSelector:
                      "Conecte uma câmera ao computador\n"
                      "para que ela apareça aqui.",
                 font=("Arial", 13),
-                text_color="#888888",
+                text_color="#FFFFFF",
                 justify="center"
             )
 
@@ -167,8 +167,8 @@ class CameraSelector:
 
             if selecionada:
                 texto = f"●  Câmera {indice + 1}  •  ATIVA"
-                cor_fundo = "#1F6AA5"
-                cor_hover = "#287DBB"
+                cor_fundo = "#FF0000"
+                cor_hover = "#FD2626"
             else:
                 texto = f"○  Câmera {indice + 1}  •  Selecionar"
                 cor_fundo = "#252525"
@@ -182,7 +182,7 @@ class CameraSelector:
                 fg_color=cor_fundo,
                 hover_color=cor_hover,
                 border_width=1,
-                border_color="#444444",
+                border_color="#750000",
                 text_color="#FFFFFF",
                 font=("Arial", 13, "bold" if selecionada else "normal"),
                 anchor="w",
